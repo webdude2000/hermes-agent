@@ -27,7 +27,7 @@ GITHUB_MODELS_CATALOG_URL = COPILOT_MODELS_URL
 # (model_id, display description shown in menus)
 OPENROUTER_MODELS: list[tuple[str, str]] = [
     ("anthropic/claude-opus-4.6",       "recommended"),
-    ("anthropic/claude-sonnet-4.6",     ""),
+    ("anthropic/claude-sonnet-5",     ""),
     ("qwen/qwen3.6-plus:free", "free"),
     ("anthropic/claude-sonnet-4.5",     ""),
     ("anthropic/claude-haiku-4.5",      ""),
@@ -59,7 +59,7 @@ OPENROUTER_MODELS: list[tuple[str, str]] = [
 _PROVIDER_MODELS: dict[str, list[str]] = {
     "nous": [
         "anthropic/claude-opus-4.6",
-        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-sonnet-5",
         "qwen/qwen3.6-plus:free",
         "anthropic/claude-sonnet-4.5",
         "anthropic/claude-haiku-4.5",
@@ -106,7 +106,7 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
         "gpt-4o",
         "gpt-4o-mini",
         "claude-opus-4.6",
-        "claude-sonnet-4.6",
+        "claude-sonnet-5",
         "claude-sonnet-4.5",
         "claude-haiku-4.5",
         "gemini-2.5-pro",
@@ -149,7 +149,7 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
     ],
     "anthropic": [
         "claude-opus-4-6",
-        "claude-sonnet-4-6",
+        "claude-sonnet-5",
         "claude-opus-4-5-20251101",
         "claude-sonnet-4-5-20250929",
         "claude-opus-4-20250514",
@@ -177,7 +177,7 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
         "claude-opus-4-6",
         "claude-opus-4-5",
         "claude-opus-4-1",
-        "claude-sonnet-4-6",
+        "claude-sonnet-5",
         "claude-sonnet-4-5",
         "claude-sonnet-4",
         "claude-haiku-4-5",
@@ -208,7 +208,7 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
     ],
     "ai-gateway": [
         "anthropic/claude-opus-4.6",
-        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-sonnet-5",
         "anthropic/claude-sonnet-4.5",
         "anthropic/claude-haiku-4.5",
         "openai/gpt-5",
@@ -222,7 +222,7 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
     ],
     "kilocode": [
         "anthropic/claude-opus-4.6",
-        "anthropic/claude-sonnet-4.6",
+        "anthropic/claude-sonnet-5",
         "openai/gpt-5.4",
         "google/gemini-3-pro-preview",
         "google/gemini-3-flash-preview",
@@ -831,7 +831,7 @@ _COPILOT_MODEL_ALIASES = {
     "openai/o3-mini": "gpt-5-mini",
     "openai/o4-mini": "gpt-5-mini",
     "anthropic/claude-opus-4.6": "claude-opus-4.6",
-    "anthropic/claude-sonnet-4.6": "claude-sonnet-4.6",
+    "anthropic/claude-sonnet-5": "claude-sonnet-5",
     "anthropic/claude-sonnet-4.5": "claude-sonnet-4.5",
     "anthropic/claude-haiku-4.5": "claude-haiku-4.5",
 }
