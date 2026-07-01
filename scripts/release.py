@@ -45,6 +45,7 @@ ACP_REGISTRY_MANIFEST = REPO_ROOT / "acp_registry" / "agent.json"
 
 # Auto-extracted from noreply emails + manual overrides
 AUTHOR_MAP = {
+    "swissly@users.noreply.github.com": "swissly",  # PR #47167 salvage (wrap cron delivery thread-pool fallback in its own try/except so a per-target failure can't escape the except-RuntimeError block and crash the multi-target delivery loop; #47163)
     "30854794+YLChen-007@users.noreply.github.com": "YLChen-007",  # PR #27289 salvage (case-insensitive streaming reasoning-tag filter in cli.py _stream_delta + gateway stream_consumer so mixed-case variants like <Think>/<ThInK> are suppressed, not just the hardcoded case literals)
     "259353979+testingbuddies24@users.noreply.github.com": "testingbuddies24",  # PR #43192 salvage (strip orphan think-tag close tags in progressive gateway stream so a bare </think> whose open was dropped upstream can't leak to the user)
     "shx_929@163.com": "Lazymonter",  # PR #42914 salvage (retry launchd bootstrap after bootout on EIO for install/start instead of degrading to detached)
