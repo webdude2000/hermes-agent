@@ -642,7 +642,7 @@ class GatewayRunner:
                 return
 
             # Resolve model from config — AIAgent's default is OpenRouter-
-            # formatted ("anthropic/claude-opus-4.6") which fails when the
+            # formatted ("anthropic/claude-opus-4.8") which fails when the
             # active provider is openai-codex.
             model = _resolve_gateway_model()
 
