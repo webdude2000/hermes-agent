@@ -81,6 +81,62 @@ _UTC_NOW = lambda: datetime.now(timezone.utc)
 # Official docs snapshot entries. Models whose published pricing and cache
 # semantics are stable enough to encode exactly.
 _OFFICIAL_DOCS_PRICING: Dict[tuple[str, str], PricingEntry] = {
+    # Current fork defaults (PRs #1/#2 moved defaults to Sonnet 5 / Opus 4.8).
+    # Without these entries the direct-Anthropic billing route has no live
+    # fallback (see get_pricing_entry) and every request reports cost=unknown.
+    # Cache multipliers follow Anthropic's published semantics used elsewhere
+    # in this table: read = 0.1x input, 5m write = 1.25x input.
+    (
+        "anthropic",
+        "claude-opus-4-8",
+    ): PricingEntry(
+        input_cost_per_million=Decimal("5.00"),
+        output_cost_per_million=Decimal("25.00"),
+        cache_read_cost_per_million=Decimal("0.50"),
+        cache_write_cost_per_million=Decimal("6.25"),
+        source="official_docs_snapshot",
+        source_url="https://platform.claude.com/docs/en/pricing",
+        pricing_version="anthropic-pricing-2026-07-02",
+    ),
+    (
+        "anthropic",
+        "claude-sonnet-5",
+    ): PricingEntry(
+        # Sticker price. An introductory $2.00/$10.00 per MTok applies through
+        # 2026-08-31; we encode the durable rate (slight over-estimate until then).
+        input_cost_per_million=Decimal("3.00"),
+        output_cost_per_million=Decimal("15.00"),
+        cache_read_cost_per_million=Decimal("0.30"),
+        cache_write_cost_per_million=Decimal("3.75"),
+        source="official_docs_snapshot",
+        source_url="https://platform.claude.com/docs/en/pricing",
+        pricing_version="anthropic-pricing-2026-07-02",
+    ),
+    # Previous defaults / current fallback tier — still selectable in configs.
+    (
+        "anthropic",
+        "claude-opus-4-6",
+    ): PricingEntry(
+        input_cost_per_million=Decimal("5.00"),
+        output_cost_per_million=Decimal("25.00"),
+        cache_read_cost_per_million=Decimal("0.50"),
+        cache_write_cost_per_million=Decimal("6.25"),
+        source="official_docs_snapshot",
+        source_url="https://platform.claude.com/docs/en/pricing",
+        pricing_version="anthropic-pricing-2026-07-02",
+    ),
+    (
+        "anthropic",
+        "claude-sonnet-4-6",
+    ): PricingEntry(
+        input_cost_per_million=Decimal("3.00"),
+        output_cost_per_million=Decimal("15.00"),
+        cache_read_cost_per_million=Decimal("0.30"),
+        cache_write_cost_per_million=Decimal("3.75"),
+        source="official_docs_snapshot",
+        source_url="https://platform.claude.com/docs/en/pricing",
+        pricing_version="anthropic-pricing-2026-07-02",
+    ),
     (
         "anthropic",
         "claude-opus-4-20250514",
