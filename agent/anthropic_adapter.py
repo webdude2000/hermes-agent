@@ -41,6 +41,13 @@ ADAPTIVE_EFFORT_MAP = {
 # max_tokens as a mandatory field.  Previously we hardcoded 16384, which
 # starves thinking-enabled models (thinking tokens count toward the limit).
 _ANTHROPIC_OUTPUT_LIMITS = {
+    # Claude 5 / Opus 4.8 (current defaults) — listed before the shorter
+    # "claude-opus-4" key so the longest-prefix match in
+    # _get_anthropic_max_output() wins. Without an explicit entry,
+    # "claude-opus-4-8" fuzzy-matches "claude-opus-4" (32_000) instead of
+    # inheriting the 4.6-tier 128_000 limit, starving thinking tokens.
+    "claude-opus-4-8":   128_000,
+    "claude-sonnet-5":    64_000,
     # Claude 4.6
     "claude-opus-4-6":   128_000,
     "claude-sonnet-4-6":  64_000,

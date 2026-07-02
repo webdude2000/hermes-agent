@@ -89,6 +89,13 @@ DEFAULT_CONTEXT_LENGTHS = {
     # fuzzy-match collisions (e.g. "anthropic/claude-sonnet-4" is a
     # substring of "anthropic/claude-sonnet-4.6").
     # OpenRouter-prefixed models resolve via OpenRouter live API or models.dev.
+    # Opus 4.8 / Sonnet 5 are the current defaults (fork PR #1/#2) and share
+    # the 4.6-generation 1M window; without explicit entries they fall through
+    # to the "claude": 200000 catch-all below (a 5x under-estimate that forces
+    # premature context compression when live lookups are unavailable).
+    "claude-opus-4-8": 1000000,
+    "claude-opus-4.8": 1000000,
+    "claude-sonnet-5": 1000000,
     "claude-opus-4-6": 1000000,
     "claude-sonnet-4-6": 1000000,
     "claude-opus-4.6": 1000000,
