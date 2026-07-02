@@ -101,6 +101,34 @@ def test_estimate_usage_cost_refuses_cache_pricing_without_official_cache_rate(m
     assert result.status == "unknown"
 
 
+def test_current_default_anthropic_models_have_official_pricing():
+    # Fork PRs #1/#2 moved defaults to Sonnet 5 / Opus 4.8. The direct-Anthropic
+    # billing route has no live-metadata fallback, so a missing snapshot entry
+    # makes every request report cost=unknown / $0. Guard against regressing.
+    opus = get_pricing_entry("claude-opus-4-8", provider="anthropic")
+    assert opus is not None
+    assert float(opus.input_cost_per_million) == 5.0
+    assert float(opus.output_cost_per_million) == 25.0
+
+    sonnet = get_pricing_entry("claude-sonnet-5", provider="anthropic")
+    assert sonnet is not None
+    assert float(sonnet.input_cost_per_million) == 3.0
+    assert float(sonnet.output_cost_per_million) == 15.0
+
+    # provider-slash form resolves the same entry without an explicit provider arg
+    assert get_pricing_entry("anthropic/claude-opus-4-8") is not None
+
+
+def test_estimate_cost_for_default_anthropic_model_is_not_unknown():
+    result = estimate_usage_cost(
+        "claude-opus-4-8",
+        CanonicalUsage(input_tokens=1_000_000, output_tokens=1_000_000),
+        provider="anthropic",
+    )
+    assert result.status == "estimated"
+    assert float(result.amount_usd) == 30.0
+
+
 def test_custom_endpoint_models_api_pricing_is_supported(monkeypatch):
     monkeypatch.setattr(
         "agent.usage_pricing.fetch_endpoint_model_metadata",
